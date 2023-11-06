@@ -3,6 +3,7 @@ import { Nunito, Nunito_Sans } from 'next/font/google'
 import './globals.css'
 import clsx from 'clsx'
 import { createClient } from '@/prismicio'
+import Header from '@/components/Header'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -39,7 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en' className={clsx(nunito.variable, nunitoSans.variable)}>
       <body>
-        {/* <Header /> */}
+        <Header />
         {children}
         {/* <Footer /> */}
         <div className='fixed bg-gradient-to-tr from-emerald-50 to-cyan-50 z-[-1] inset-0 opacity-50' />
