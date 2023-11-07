@@ -39,7 +39,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         </Bounded>
       )}
 
-      {/* {slice.variation === 'horizontal' && (
+      {slice.variation === 'horizontal' && (
         <Bounded data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
           <div className='grid grid-cols-1 md:grid-cols-2 place-items-center'>
             <div className='grid grid-rows-[1fr,auto,auto] h-fit'>
@@ -55,7 +55,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             />
           </div>
         </Bounded>
-      )} */}
+      )}
     </>
   )
 }
