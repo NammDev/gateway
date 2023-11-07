@@ -4,6 +4,7 @@ import './globals.css'
 import clsx from 'clsx'
 import { createClient } from '@/prismicio'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -42,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Header />
         {children}
-        {/* <Footer /> */}
+        <Footer />
         <div className='fixed bg-gradient-to-tr from-emerald-50 to-cyan-50 z-[-1] inset-0 opacity-50' />
         {/* <PrismicPreview repositoryName={repositoryName} /> */}
       </body>
