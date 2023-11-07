@@ -50,7 +50,6 @@ const Testimonials = async ({ slice }: TestimonialsProps): Promise<JSX.Element> 
                     field={item.data.avatar}
                     className='rounded-full mr-4 aspect-square'
                     imgixParams={{ ar: '1:1', fit: 'crop' }}
-                    alt={item.data.avatar.alt || ' '}
                   />
                   <div>
                     <p className='text-base font-medium text-slate-700'>{item.data.name}</p>
