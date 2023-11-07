@@ -29,10 +29,18 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await client.getSingle('settings')
 
   return {
+    metadataBase: new URL('http://localhost:3000'),
     title: settings.data.site_title || 'Gateway fallback',
     description: settings.data.meta_description || 'Flowrise is the relaxing app for you.',
     openGraph: {
       images: [settings.data.og_image.url || ''],
+    },
+    twitter: {
+      images: [settings.data.og_image.url || ''],
+      card: 'summary_large_image',
+      site: '@nammdev',
+      title: settings.data.site_title || 'Gateway fallback',
+      description: settings.data.meta_description || 'Flowrise is the relaxing app for you.',
     },
   }
 }
