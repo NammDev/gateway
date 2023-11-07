@@ -17,21 +17,15 @@ const components: JSXMapSerializer = {
   ),
 }
 
-/**
- * Props for `Testimonials`.
- */
 export type TestimonialsProps = SliceComponentProps<Content.TestimonialsSlice>
 
-/**
- * Component for "Testimonials" Slices.
- */
 const Testimonials = async ({ slice }: TestimonialsProps): Promise<JSX.Element> => {
   const client = createClient()
 
   const testimonials = await Promise.all(
-    slice.items.map((item) => {
+    slice.items.map(async (item: any) => {
       if (isFilled.contentRelationship(item.testimonial) && item.testimonial.uid) {
-        return client.getByUID('testimonial', item.testimonial.uid)
+        return await client.getByUID('testimonial', item.testimonial.uid)
       }
     })
   )
@@ -41,7 +35,7 @@ const Testimonials = async ({ slice }: TestimonialsProps): Promise<JSX.Element> 
       <PrismicRichText components={components} field={slice.primary.heading} />
       <div className='grid lg:grid-cols-3 grid-cols-1 gap-8'>
         {testimonials.map(
-          (item, index) =>
+          (item: any, index: number) =>
             item && (
               <div
                 key={index}
