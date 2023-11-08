@@ -13,8 +13,20 @@ const config: Config = {
         body: ['var(--font-nunito-sans)'],
         display: ['var(--font-nunito)'],
       },
+      colors: {
+        primary: {
+          300: '#D4D4D8',
+          400: '#A1A1AA',
+          700: '#3F3F46',
+          800: '#27272A',
+          900: '#18181B',
+        },
+        accent: {
+          500: '#FFDF64',
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
 export default config

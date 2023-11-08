@@ -49,11 +49,12 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' className={clsx(nunito.variable, nunitoSans.variable)}>
-      <body>
-        <Header />
-        {children}
-        <Footer />
-        <div className='fixed bg-gradient-to-tr from-emerald-50 to-cyan-50 z-[-1] inset-0 opacity-50' />
+      <body className='dark'>
+        <div className='min-h-screen font-sans dark:bg-primary-900 dark:text-white'>
+          <Header />
+          {children}
+          <Footer />
+        </div>
         <PrismicPreview repositoryName={repositoryName} />
       </body>
     </html>
