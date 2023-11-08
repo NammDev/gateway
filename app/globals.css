@@ -2,6 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+.font-sans {
+  font-family:
+    Lato,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Helvetica Neue,
+    Arial,
+    Noto Sans,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
+}
+h1 mark,
+h2 mark {
+  line-height: 1.25rem;
+}
+
+.dark h1 mark,
+.dark h2 mark {
+  line-height: 1;
+}
+
+h1 mark,
+h2 mark {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.dark h1 mark,
+.dark h2 mark {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+h1 mark,
+h2 mark {
+  border-radius: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 223 100 / var(--tw-bg-opacity));
+}
+
+.dark h1 mark,
+.dark h2 mark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(24 24 27 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 223 100 / var(--tw-text-opacity));
+}
+
+.article-card-wrapper {
+  position: relative;
+}
+
+.article-card-wrapper .main-link:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -24,4 +92,44 @@
   width: 100%;
   grid-auto-flow: row;
   place-items: start;
+}
+
+.slice {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .slice {
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+  }
+}
+
+.slice--has-background + .slice--has-background {
+  margin-top: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .slice--has-background + .slice--has-background {
+    margin-top: -7rem;
+  }
+}
+
+.slice:last-of-type.slice--has-background {
+  margin-bottom: 0;
+}
+
+.slice:last-of-type.slice--no-background {
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .slice:last-of-type.slice--no-background {
+    margin-bottom: 7rem;
+  }
+}
+
+.slice:first-of-type {
+  margin-top: 0;
 }

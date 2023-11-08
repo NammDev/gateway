@@ -23,10 +23,11 @@ const config: Config = {
         },
         accent: {
           500: '#FFDF64',
+          700: '#FFD431',
         },
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio')],
 }
 export default config
