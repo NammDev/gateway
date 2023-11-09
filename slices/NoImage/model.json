@@ -1,8 +1,8 @@
 {
-  "id": "call_to_action",
+  "id": "no_image",
   "type": "SharedSlice",
-  "name": "CallToAction",
-  "description": "CallToAction",
+  "name": "NoImage",
+  "description": "NoImage",
   "variations": [
     {
       "id": "default",
@@ -18,7 +18,7 @@
             "label": "Heading",
             "placeholder": "",
             "allowTargetBlank": true,
-            "single": "heading2"
+            "single": "heading1"
           }
         },
         "body": {
@@ -27,7 +27,14 @@
             "label": "Body",
             "placeholder": "",
             "allowTargetBlank": true,
-            "single": "paragraph,em,strong"
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
           }
         },
         "button_link": {
@@ -36,13 +43,6 @@
             "label": "Button Link",
             "placeholder": "",
             "select": null
-          }
-        },
-        "button_text": {
-          "type": "Text",
-          "config": {
-            "label": "Button Text",
-            "placeholder": ""
           }
         }
       },
