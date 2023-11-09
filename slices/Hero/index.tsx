@@ -15,7 +15,7 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>
 const Hero = ({ slice }: HeroProps): JSX.Element => {
   return (
     <>
-      {slice.variation === 'horizontal' && (
+      {slice.variation === 'default' && (
         <section className='slice slice--no-background'>
           <div className='mx-auto w-full px-6 sm:px-7 lg:px-8 max-w-7xl'>
             <div className='flex flex-col items-center gap-8 lg:flex-row lg:gap-16'>
