@@ -1,5 +1,6 @@
 import Button from '@/components/Button'
 import { Content } from '@prismicio/client'
+import { PrismicNextImage } from '@prismicio/next'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
 import Image from 'next/image'
 
@@ -47,9 +48,8 @@ const KeyServices = ({ slice }: KeyServicesProps): JSX.Element => {
                         right: 0,
                       }}
                     >
-                      <Image
-                        alt='conversation bubbles connected icon'
-                        src='https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=3840'
+                      <PrismicNextImage
+                        field={item.icon}
                         decoding='async'
                         data-nimg='fill'
                         className='h-full w-full'
