@@ -3,8 +3,6 @@ import { SliceZone } from '@prismicio/react'
 
 import { createClient } from '@/prismicio'
 import { components } from '@/slices'
-import Workingwith from '@/components/TheRK/Workingwith'
-import Image from 'next/image'
 
 export default async function Page() {
   const client = createClient()
