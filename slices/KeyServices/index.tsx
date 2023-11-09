@@ -1,6 +1,7 @@
 import Button from '@/components/Button'
 import { Content } from '@prismicio/client'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
+import Image from 'next/image'
 
 const components: JSXMapSerializer = {
   heading2: ({ children }) => <h1>{children}</h1>,
@@ -46,7 +47,7 @@ const KeyServices = ({ slice }: KeyServicesProps): JSX.Element => {
                         right: 0,
                       }}
                     >
-                      <img
+                      <Image
                         alt='conversation bubbles connected icon'
                         src='https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=3840'
                         decoding='async'
@@ -72,37 +73,7 @@ const KeyServices = ({ slice }: KeyServicesProps): JSX.Element => {
                           objectFit: 'contain',
                         }}
                         sizes='100vw'
-                        srcSet='https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=82 82w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=110 110w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=140 140w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=640 640w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=750 750w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=828 828w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=1080 1080w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=1200 1200w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=1920 1920w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=2048 2048w, https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&fit=max&w=3840 3840w'
                       />
-                      <noscript>
-                        &lt;img alt="conversation bubbles connected icon" sizes="100vw"
-                        srcSet="https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=82
-                        82w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=110
-                        110w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=140
-                        140w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=640
-                        640w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=750
-                        750w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=828
-                        828w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=1080
-                        1080w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=1200
-                        1200w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=1920
-                        1920w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=2048
-                        2048w,
-                        https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=3840
-                        3840w"
-                        src="https://the-resource-key.cdn.prismic.io/the-resource-key/7f83eb5b-ed8d-4db3-88d0-4545c687b123_message-chat-circle.svg?auto=format&amp;amp;fit=max&amp;amp;w=3840"
-                        decoding="async" data-nimg="fill"
-                        style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%;object-fit:contain"
-                        class="h-full w-full" loading="lazy"/&gt;
-                      </noscript>
                     </span>
                   </div>
                 </div>
