@@ -628,6 +628,36 @@ export type NoImageSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *WorkingWith → Primary*
+ */
+export interface WorkingWithSliceDefaultPrimary {
+  /**
+   * Heading field in *WorkingWith → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: working_with.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *WorkingWith → Items*
+ */
+export interface WorkingWithSliceDefaultItem {
+  /**
+   * Image field in *WorkingWith → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: working_with.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
  * Default variation for WorkingWith Slice
  *
  * - **API ID**: `default`
@@ -636,8 +666,8 @@ export type NoImageSlice = prismic.SharedSlice<
  */
 export type WorkingWithSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
-  never
+  Simplify<WorkingWithSliceDefaultPrimary>,
+  Simplify<WorkingWithSliceDefaultItem>
 >;
 
 /**
@@ -695,6 +725,8 @@ declare module "@prismicio/client" {
       NoImageSliceVariation,
       NoImageSliceDefault,
       WorkingWithSlice,
+      WorkingWithSliceDefaultPrimary,
+      WorkingWithSliceDefaultItem,
       WorkingWithSliceVariation,
       WorkingWithSliceDefault,
     };
