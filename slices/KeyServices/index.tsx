@@ -2,7 +2,6 @@ import Button from '@/components/Button'
 import { Content } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
-import Image from 'next/image'
 
 const components: JSXMapSerializer = {
   heading2: ({ children }) => <h1>{children}</h1>,
@@ -80,14 +79,9 @@ const KeyServices = ({ slice }: KeyServicesProps): JSX.Element => {
                 <PrismicRichText field={item.small_heading} components={components} />
                 <PrismicRichText field={item.body} components={components} />
               </div>
-              <a
-                className='group inline-flex h-min w-full items-center justify-center p-0.5 text-center font-medium duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg lg:w-fit shadow-sm hover:shadow text-primary-900 bg-accent-500 hover:bg-accent-700 disabled:hover:bg-accent-100 focus:ring-blue-500 dark:bg-white dark:hover:bg-primary-200 dark:text-black'
-                tabIndex={-1}
-                href='/services/speaking/'
-              >
-                <span className='flex items-center text-sm px-4 py-2 rounded-md'>Learn more</span>
-              </a>
-              {/* <Button field={item.button_link}>{item.button_text}</Button> */}
+              <Button field={item.button_link} type='type2'>
+                {item.button_text}
+              </Button>
             </div>
           ))}
         </div>
