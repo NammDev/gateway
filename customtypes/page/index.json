@@ -25,7 +25,23 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "no_image": {
+              "type": "SharedSlice"
+            },
+            "quote": {
+              "type": "SharedSlice"
+            },
+            "hero": {
+              "type": "SharedSlice"
+            },
+            "working_with": {
+              "type": "SharedSlice"
+            },
+            "key_services": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

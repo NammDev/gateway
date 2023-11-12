@@ -84,7 +84,12 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-type PageDocumentDataSlicesSlice = never;
+type PageDocumentDataSlicesSlice =
+  | NoImageSlice
+  | QuoteSlice
+  | HeroSlice
+  | WorkingWithSlice
+  | KeyServicesSlice;
 
 /**
  * Content for Page documents
@@ -626,9 +631,67 @@ export type NoImageSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *NoImage → Primary*
+ */
+export interface NoImageSliceBlackboxPrimary {
+  /**
+   * Heading field in *NoImage → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: no_image.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *NoImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: no_image.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Button Text field in *NoImage → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: no_image.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *NoImage → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: no_image.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * blackbox variation for NoImage Slice
+ *
+ * - **API ID**: `blackbox`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NoImageSliceBlackbox = prismic.SharedSliceVariation<
+  "blackbox",
+  Simplify<NoImageSliceBlackboxPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *NoImage*
  */
-type NoImageSliceVariation = NoImageSliceDefault;
+type NoImageSliceVariation = NoImageSliceDefault | NoImageSliceBlackbox;
 
 /**
  * NoImage Shared Slice
@@ -738,9 +801,54 @@ export type WorkingWithSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *WorkingWith → Primary*
+ */
+export interface WorkingWithSliceMultiPrimary {
+  /**
+   * Heading field in *WorkingWith → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: working_with.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *WorkingWith → Items*
+ */
+export interface WorkingWithSliceMultiItem {
+  /**
+   * Image field in *WorkingWith → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: working_with.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * multi variation for WorkingWith Slice
+ *
+ * - **API ID**: `multi`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type WorkingWithSliceMulti = prismic.SharedSliceVariation<
+  "multi",
+  Simplify<WorkingWithSliceMultiPrimary>,
+  Simplify<WorkingWithSliceMultiItem>
+>;
+
+/**
  * Slice variation for *WorkingWith*
  */
-type WorkingWithSliceVariation = WorkingWithSliceDefault;
+type WorkingWithSliceVariation =
+  | WorkingWithSliceDefault
+  | WorkingWithSliceMulti;
 
 /**
  * WorkingWith Shared Slice
@@ -789,8 +897,10 @@ declare module "@prismicio/client" {
       KeyServicesSliceDefault,
       NoImageSlice,
       NoImageSliceDefaultPrimary,
+      NoImageSliceBlackboxPrimary,
       NoImageSliceVariation,
       NoImageSliceDefault,
+      NoImageSliceBlackbox,
       QuoteSlice,
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,
@@ -798,8 +908,11 @@ declare module "@prismicio/client" {
       WorkingWithSlice,
       WorkingWithSliceDefaultPrimary,
       WorkingWithSliceDefaultItem,
+      WorkingWithSliceMultiPrimary,
+      WorkingWithSliceMultiItem,
       WorkingWithSliceVariation,
       WorkingWithSliceDefault,
+      WorkingWithSliceMulti,
     };
   }
 }

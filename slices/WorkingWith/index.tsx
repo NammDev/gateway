@@ -1,6 +1,7 @@
 import { Content } from '@prismicio/client'
 import { PrismicNextImage } from '@prismicio/next'
 import { SliceComponentProps, JSXMapSerializer, PrismicRichText } from '@prismicio/react'
+import clsx from 'clsx'
 
 const components: JSXMapSerializer = {
   heading2: ({ children }) => <h1>{children}</h1>,
@@ -16,7 +17,12 @@ const WorkingWith = ({ slice }: WorkingWithProps): JSX.Element => {
         <div className='mb-7 text-center font-bold uppercase text-primary-700 dark:text-primary-300'>
           <PrismicRichText field={slice.primary.heading} components={components} />
         </div>
-        <div className='grid grid-cols-1 gap-6 md:grid-cols-4'>
+        <div
+          className={clsx(
+            'grid grid-cols-1 gap-6 ',
+            slice.variation === 'default' ? 'md:grid-cols-4' : 'md:grid-cols-6'
+          )}
+        >
           {slice.items.map((item, index) => (
             <div
               key={index}
