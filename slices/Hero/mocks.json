@@ -7,9 +7,9 @@
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
-						"type": "heading1",
+						"type": "paragraph",
 						"content": {
-							"text": "Aloud"
+							"text": "Et ea voluptate adipisicing culpa aliqua esse ea nisi velit."
 						}
 					}
 				]
@@ -78,17 +78,6 @@
 					}
 				]
 			},
-			"body": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "paragraph",
-						"content": {
-							"text": "Ullamco anim id ex laborum fugiat eiusmod excepteur exercitation Lorem fugiat dolore exercitation proident elit."
-						}
-					}
-				]
-			},
 			"button_text": {
 				"__TYPE__": "FieldContent",
 				"value": "fair",
@@ -102,7 +91,6 @@
 				}
 			},
 			"image": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1587905069134-008460d7a636",
@@ -120,13 +108,31 @@
 					},
 					"background": "transparent"
 				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			}
 		},
 		"items": [
 			{
 				"__TYPE__": "GroupItemContent",
-				"value": []
+				"value": [
+					[
+						"body",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Laborum eiusmod eiusmod adipisicing deserunt esse in culpa ea Lorem anim. Mollit ipsum dolor excepteur nostrud cupidatat. Elit eiusmod ut consectetur eu culpa."
+									}
+								}
+							]
+						}
+					]
+				]
 			}
 		]
 	}

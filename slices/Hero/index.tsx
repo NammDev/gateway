@@ -21,10 +21,10 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             <div className='flex flex-col items-center gap-8 lg:flex-row lg:gap-16'>
               <div className='lg:w-1/2'>
                 <div className='text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl'>
-                  {/* <PrismicRichText field={slice.primary.heading} components={components} /> */}
-                  <h1>
+                  <PrismicRichText field={slice.primary.heading} components={components} />
+                  {/* <h1>
                     We Partner with Brands to Build <mark>Inclusive Impact Solutions</mark>
-                  </h1>
+                  </h1> */}
                 </div>
                 <div className='mt-3 text-primary-600 dark:text-primary-100 sm:mt-6 sm:text-xl md:w-4/5 lg:text-lg xl:text-xl'>
                   <PrismicRichText field={slice.primary.body} components={components} />
@@ -98,7 +98,9 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
                     <PrismicRichText field={slice.primary.heading} components={components} />
                   </div>
                   <div className='prose mt-3 dark:prose-invert sm:mt-6 lg:prose-lg'>
-                    <PrismicRichText field={slice.primary.body} components={components} />
+                    {slice.items.map((item, index) => (
+                      <PrismicRichText key={index} field={item.body} components={components} />
+                    ))}
                   </div>
                   <div className='mt-8'>
                     <Button field={slice.primary.button_link}>{slice.primary.button_text}</Button>

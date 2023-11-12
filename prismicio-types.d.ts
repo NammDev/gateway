@@ -405,16 +405,6 @@ export interface HeroSliceNoMarkPrimary {
   heading: prismic.RichTextField;
 
   /**
-   * Body field in *Hero → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.body
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  body: prismic.RichTextField;
-
-  /**
    * Button Text field in *Hero → Primary*
    *
    * - **Field Type**: Text
@@ -446,6 +436,21 @@ export interface HeroSliceNoMarkPrimary {
 }
 
 /**
+ * Primary content in *Hero → Items*
+ */
+export interface HeroSliceNoMarkItem {
+  /**
+   * Body field in *Hero → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.items[].body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
  * NoMark variation for Hero Slice
  *
  * - **API ID**: `noMark`
@@ -455,7 +460,7 @@ export interface HeroSliceNoMarkPrimary {
 export type HeroSliceNoMark = prismic.SharedSliceVariation<
   "noMark",
   Simplify<HeroSliceNoMarkPrimary>,
-  never
+  Simplify<HeroSliceNoMarkItem>
 >;
 
 /**
@@ -887,6 +892,7 @@ declare module "@prismicio/client" {
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceNoMarkPrimary,
+      HeroSliceNoMarkItem,
       HeroSliceVariation,
       HeroSliceDefault,
       HeroSliceNoMark,

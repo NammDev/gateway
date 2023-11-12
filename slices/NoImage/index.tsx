@@ -48,7 +48,7 @@ const NoImage = ({ slice }: NoImageProps): JSX.Element => {
                   </div>
                 </div>
                 <div className='text-right'>
-                  <Button type='type1' field={slice.primary.button_link}>
+                  <Button type='type3' field={slice.primary.button_link}>
                     {slice.primary.button_text}
                   </Button>
                 </div>
