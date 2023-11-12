@@ -1,0 +1,31 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"quote": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ut occaecat incididunt anim consequat anim id nulla. Ut veniam est laboris pariatur deserunt nostrud consequat."
+						}
+					}
+				]
+			},
+			"people": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Do fugiat ipsum qui pariatur fugiat eu eiusmod eu voluptate do exercitation cillum tempor."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

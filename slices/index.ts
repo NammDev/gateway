@@ -6,5 +6,6 @@ export const components = {
   hero: dynamic(() => import("./Hero")),
   key_services: dynamic(() => import("./KeyServices")),
   no_image: dynamic(() => import("./NoImage")),
+  quote: dynamic(() => import("./Quote")),
   working_with: dynamic(() => import("./WorkingWith")),
 };
