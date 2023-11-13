@@ -26,6 +26,13 @@
           "constraint": {},
           "thumbnails": []
         }
+      },
+      "position": {
+        "type": "Text",
+        "config": {
+          "label": "Position",
+          "placeholder": ""
+        }
       }
     }
   }
