@@ -133,3 +133,7 @@ h2 mark {
 .slice:first-of-type {
   margin-top: 0;
 }
+
+.rounded-box {
+  border-radius: var(--rounded-box, 1rem);
+}

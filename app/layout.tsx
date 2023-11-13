@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className='dark'>
         <div className='min-h-screen font-sans dark:bg-primary-900 dark:text-white'>
           <Header />
-          {children}
+          <main>{children}</main>
           <Footer />
         </div>
         <PrismicPreview repositoryName={repositoryName} />

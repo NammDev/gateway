@@ -116,6 +116,17 @@ interface BlogDocumentData {
   body: prismic.RichTextField;
 
   /**
+   * Image field in *Blog*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
    * Slice Zone field in *Blog*
    *
    * - **Field Type**: Slice Zone
