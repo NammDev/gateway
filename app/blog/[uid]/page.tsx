@@ -47,6 +47,9 @@ export default async function Page({ params }: { params: { uid: string } }) {
   //       { field: 'document.first_publication_date', direction: 'desc' },
   //     ],
   //   })
+  console.log(blog.data)
+  const categories = await client.getByUID('category', blog.data.category.uid)
+  console.log(categories.data.name)
 
   const date = prismic.asDate(blog.data.date || blog.first_publication_date)
 

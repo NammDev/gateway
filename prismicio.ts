@@ -17,6 +17,14 @@ const routes: prismic.ClientConfig['routes'] = [
     type: 'blog',
     path: '/blog/:uid',
   },
+  {
+    type: 'category',
+    path: '/blog/category/:uid',
+  },
+  {
+    type: 'author',
+    path: '/blog/author/:uid',
+  },
 ]
 
 export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
