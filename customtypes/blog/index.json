@@ -21,14 +21,6 @@
           "single": "heading1"
         }
       },
-      "category": {
-        "type": "Link",
-        "config": {
-          "label": "Category",
-          "select": "document",
-          "customtypes": ["category"]
-        }
-      },
       "quote": {
         "type": "StructuredText",
         "config": {
@@ -68,6 +60,22 @@
           "label": "Image",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "categories": {
+        "type": "Group",
+        "config": {
+          "label": "Categories",
+          "fields": {
+            "category": {
+              "type": "Link",
+              "config": {
+                "label": "Category",
+                "select": "document",
+                "customtypes": ["category"]
+              }
+            }
+          }
         }
       },
       "slices": {

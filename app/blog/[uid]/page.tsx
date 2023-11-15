@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import * as prismic from '@prismicio/client'
-import { PrismicNextLink } from '@prismicio/next'
+import { PrismicNextImage, PrismicNextLink } from '@prismicio/next'
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
+import { Content, isFilled } from '@prismicio/client'
 
 import { createClient } from '@/prismicio'
+import Image from 'next/image'
 
 const dateFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'short',
@@ -47,9 +49,21 @@ export default async function Page({ params }: { params: { uid: string } }) {
   //       { field: 'document.first_publication_date', direction: 'desc' },
   //     ],
   //   })
-  console.log(blog.data)
-  const categories = await client.getByUID('category', blog.data.category.uid)
-  console.log(categories.data.name)
+
+  // const author = client.getByUID('author', blog.data.author)
+
+  const author =
+    isFilled.contentRelationship(blog.data.author) &&
+    blog.data.author.uid &&
+    (await client.getByUID('author', blog.data.author?.uid))
+
+  const categories = await Promise.all(
+    blog.data.categories.map((category) => {
+      if (isFilled.contentRelationship(category.category) && category.category.uid) {
+        return client.getByUID('category', category.category.uid)
+      }
+    })
+  )
 
   const date = prismic.asDate(blog.data.date || blog.first_publication_date)
 
@@ -59,12 +73,15 @@ export default async function Page({ params }: { params: { uid: string } }) {
         <div className='mb-12 text-center'>
           <div className='order-1 lg:order-2'>
             <div className='mb-5 flex flex-wrap items-center justify-center gap-4'>
-              <a
-                className='rounded bg-primary-100 px-5 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary-700 duration-200 hover:bg-primary-300 focus:bg-primary-300 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-offset-2 dark:bg-primary-700 dark:text-primary-100 dark:hover:bg-primary-800'
-                href='/blog/category/the-keys/'
-              >
-                The keys
-              </a>
+              {categories.map((category) => (
+                <PrismicNextLink
+                  key={category?.uid}
+                  document={category}
+                  className='rounded bg-primary-100 px-5 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary-700 duration-200 hover:bg-primary-300 focus:bg-primary-300 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-offset-2 dark:bg-primary-700 dark:text-primary-100 dark:hover:bg-primary-800'
+                >
+                  {category?.data.name}
+                </PrismicNextLink>
+              ))}
             </div>
             <PrismicRichText
               field={blog.data.heading}
@@ -85,33 +102,19 @@ export default async function Page({ params }: { params: { uid: string } }) {
               }}
             />
             <div className='mt-7 flex justify-center'>
-              <a
-                className='group block flex-shrink-0 rounded border border-primary-300 p-2.5 duration-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring focus:ring-blue-500 focus:ring-offset-2 dark:border-primary-800'
-                href='/blog/author/jourdan-saunders/'
-              >
-                <div className='flex items-center'>
-                  <div className='relative inline-flex h-10 w-10 overflow-hidden rounded-full'>
-                    <div>
-                      <span
-                        style={{
-                          boxSizing: 'border-box',
-                          display: 'inline-block',
-                          overflow: 'hidden',
-                          width: 'initial',
-                          height: 'initial',
-                          background: 'none',
-                          opacity: 1,
-                          border: 0,
-                          margin: 0,
-                          padding: 0,
-                          position: 'relative',
-                          maxWidth: '100%',
-                        }}
-                      >
+              {author && (
+                <a
+                  className='group block flex-shrink-0 rounded border border-primary-300 p-2.5 duration-200 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring focus:ring-blue-500 focus:ring-offset-2 dark:border-primary-800'
+                  href='/blog/author/jourdan-saunders/'
+                >
+                  <div className='flex items-center'>
+                    <div className='relative inline-flex h-10 w-10 overflow-hidden rounded-full'>
+                      <div>
                         <span
                           style={{
                             boxSizing: 'border-box',
-                            display: 'block',
+                            display: 'inline-block',
+                            overflow: 'hidden',
                             width: 'initial',
                             height: 'initial',
                             background: 'none',
@@ -119,16 +122,14 @@ export default async function Page({ params }: { params: { uid: string } }) {
                             border: 0,
                             margin: 0,
                             padding: 0,
+                            position: 'relative',
                             maxWidth: '100%',
                           }}
                         >
-                          <img
-                            alt=''
-                            aria-hidden='true'
-                            src='data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e'
+                          <span
                             style={{
+                              boxSizing: 'border-box',
                               display: 'block',
-                              maxWidth: '100%',
                               width: 'initial',
                               height: 'initial',
                               background: 'none',
@@ -136,44 +137,58 @@ export default async function Page({ params }: { params: { uid: string } }) {
                               border: 0,
                               margin: 0,
                               padding: 0,
+                              maxWidth: '100%',
+                            }}
+                          >
+                            <Image
+                              width='40'
+                              height='40'
+                              alt='image author'
+                              aria-hidden='true'
+                              src='data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e'
+                              style={{
+                                display: 'block',
+                                background: 'none',
+                                opacity: 1,
+                                border: 0,
+                                margin: 0,
+                                padding: 0,
+                              }}
+                            />
+                          </span>
+                          <PrismicNextImage
+                            field={author.data.image}
+                            decoding='async'
+                            data-nimg='intrinsic'
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              boxSizing: 'border-box',
+                              padding: 0,
+                              border: 'none',
+                              margin: 'auto',
+                              display: 'block',
+                              width: 0,
+                              height: 0,
+                              minWidth: '100%',
+                              maxWidth: '100%',
+                              minHeight: '100%',
+                              maxHeight: '100%',
+                              objectFit: 'cover',
                             }}
                           />
                         </span>
-                        <img
-                          alt='headshot of Jourdan standing behind table smiling at camera.'
-                          src='https://images.prismic.io/the-resource-key/a0aa9cd9-16e6-4e23-92a3-fd12fcc34502_jourdan+saunders+headshot+3.jpg?auto=compress%2Cformat&fit=max&w=82'
-                          decoding='async'
-                          data-nimg='intrinsic'
-                          style={{
-                            position: 'absolute',
-                            inset: 0,
-                            boxSizing: 'border-box',
-                            padding: 0,
-                            border: 'none',
-                            margin: 'auto',
-                            display: 'block',
-                            width: 0,
-                            height: 0,
-                            minWidth: '100%',
-                            maxWidth: '100%',
-                            minHeight: '100%',
-                            maxHeight: '100%',
-                            objectFit: 'cover',
-                          }}
-                          srcSet='https://images.prismic.io/the-resource-key/a0aa9cd9-16e6-4e23-92a3-fd12fcc34502_jourdan+saunders+headshot+3.jpg?auto=compress%2Cformat&fit=max&w=48 1x, https://images.prismic.io/the-resource-key/a0aa9cd9-16e6-4e23-92a3-fd12fcc34502_jourdan+saunders+headshot+3.jpg?auto=compress%2Cformat&fit=max&w=82 2x'
-                        />
-                        <noscript />
-                      </span>
+                      </div>
+                    </div>
+                    <div className='ml-3 text-left'>
+                      <p className='text-sm font-bold'>{author.data.name}</p>
+                      <p className='text-xs text-primary-600 dark:text-primary-100'>
+                        {author.data.position}
+                      </p>
                     </div>
                   </div>
-                  <div className='ml-3 text-left'>
-                    <p className='text-sm font-bold'>Jourdan Saunders</p>
-                    <p className='text-xs text-primary-600 dark:text-primary-100'>
-                      CEO of The Resource Key
-                    </p>
-                  </div>
-                </div>
-              </a>
+                </a>
+              )}
             </div>
             <div className='mt-7 mb-8 flex items-center justify-center gap-8'>
               <div className='flex items-center space-x-1'>
@@ -192,7 +207,7 @@ export default async function Page({ params }: { params: { uid: string } }) {
                     d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
                   />
                 </svg>
-                <time>February 07, 2023</time>
+                <time>{dateFormatter.format(date)}</time>
               </div>
               <div className='flex items-center space-x-1'>
                 <svg
@@ -233,11 +248,9 @@ export default async function Page({ params }: { params: { uid: string } }) {
                   inset: 0,
                 }}
               >
-                <img
-                  alt='white textured bars interlocked with each other.'
+                <PrismicNextImage
+                  field={blog.data.image}
                   sizes='100vw'
-                  srcSet='https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=82 82w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=110 110w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=140 140w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=640 640w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=750 750w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=828 828w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=1080 1080w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=1200 1200w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=1920 1920w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=2048 2048w, https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=3840 3840w'
-                  src='https://images.prismic.io/the-resource-key/31b20464-8365-43b3-a005-057549c90071_integration+image.jpg?auto=compress%2Cformat&fit=max&w=3840'
                   decoding='async'
                   data-nimg='fill'
                   className='h-full w-full'

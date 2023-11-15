@@ -54,6 +54,21 @@ interface AuthorDocumentData {
 export type AuthorDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<AuthorDocumentData>, "author", Lang>;
 
+/**
+ * Item in *Blog → Categories*
+ */
+export interface BlogDocumentDataCategoriesItem {
+  /**
+   * Category field in *Blog → Categories*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.categories[].category
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<"category">;
+}
+
 type BlogDocumentDataSlicesSlice = never;
 
 /**
@@ -70,17 +85,6 @@ interface BlogDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField;
-
-  /**
-   * Category field in *Blog*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: blog.category
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  category: prismic.ContentRelationshipField<"category">;
 
   /**
    * Quote field in *Blog*
@@ -136,6 +140,17 @@ interface BlogDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   image: prismic.ImageField<never>;
+
+  /**
+   * Categories field in *Blog*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog.categories[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  categories: prismic.GroupField<Simplify<BlogDocumentDataCategoriesItem>>;
 
   /**
    * Slice Zone field in *Blog*
@@ -1038,6 +1053,7 @@ declare module "@prismicio/client" {
       AuthorDocumentData,
       BlogDocument,
       BlogDocumentData,
+      BlogDocumentDataCategoriesItem,
       BlogDocumentDataSlicesSlice,
       CategoryDocument,
       CategoryDocumentData,
