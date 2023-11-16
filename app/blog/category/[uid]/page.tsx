@@ -15,7 +15,7 @@ export async function generateMetadata() {
   }
 }
 
-export default async function Index() {
+export default async function Index({ params }: { params: { uid: string } }) {
   const client = createClient()
 
   const blogs = await client.getAllByType('blog', {
