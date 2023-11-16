@@ -120,17 +120,6 @@ interface BlogDocumentData {
   date: prismic.DateField;
 
   /**
-   * Body field in *Blog*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: blog.body
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  body: prismic.RichTextField;
-
-  /**
    * Image field in *Blog*
    *
    * - **Field Type**: Image
