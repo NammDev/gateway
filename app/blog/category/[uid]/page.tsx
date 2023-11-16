@@ -1,8 +1,6 @@
 import * as prismic from '@prismicio/client'
-
 import { createClient } from '@/prismicio'
-import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from '@prismicio/react'
-import Image from 'next/image'
+
 import BlogCard from '@/components/BlogCard'
 
 export async function generateMetadata() {
@@ -25,6 +23,15 @@ export default async function Index({ params }: { params: { uid: string } }) {
     ],
   })
 
+  const blogsByCategory = blogs.filter((blog) => {
+    return blog.data.categories.some((category) => {
+      if (prismic.isFilled.contentRelationship(category.category) && category.category.uid) {
+        return category.category.uid === params.uid
+      }
+      return false
+    })
+  })
+
   return (
     <div className='mx-auto w-full px-6 sm:px-7 lg:px-8 max-w-7xl'>
       <div className='relative px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28'>
@@ -40,7 +47,7 @@ export default async function Index({ params }: { params: { uid: string } }) {
           <div className='text-right lg:w-5/12'>
             <div>
               <button className='group inline-flex h-min w-full items-center justify-center p-0.5 text-center font-medium duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg lg:w-fit shadow-sm hover:shadow text-white bg-primary-900 hover:bg-primary-700 disabled:hover:bg-primary-500 focus:ring-blue-500 dark:bg-accent-500 dark:text-black dark:hover:bg-accent-700'>
-                <span className='flex items-center text-sm px-4 py-2 rounded-md !px-2'>
+                <span className='flex items-center text-sm py-2 rounded-md !px-2'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 20 20'
@@ -62,7 +69,7 @@ export default async function Index({ params }: { params: { uid: string } }) {
         </div>
         <h2 className='mt-10 text-3xl font-bold'>Our latest articles</h2>
         <ul className='mx-auto mt-8 grid gap-5 md:grid-cols-2 lg:mt-12 lg:max-w-none lg:grid-cols-3'>
-          {blogs.map((blog) => (
+          {blogsByCategory.map((blog) => (
             <BlogCard blog={blog} key={blog.id} />
           ))}
         </ul>
