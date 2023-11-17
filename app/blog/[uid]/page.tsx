@@ -272,7 +272,7 @@ export default async function Page({ params }: { params: { uid: string } }) {
           <div className='mb-20 grid grid-cols-1 gap-12'>
             <div className='mx-auto w-full flex-1 max-w-4xl'>
               <div className='mt-12'>
-                <a
+                <Link
                   className='group inline-flex h-min w-full items-center justify-center p-0.5 text-center font-medium duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg lg:w-fit shadow-sm hover:shadow text-primary-900 bg-accent-500 hover:bg-accent-700 disabled:hover:bg-accent-100 focus:ring-blue-500 dark:bg-white dark:hover:bg-primary-200 dark:text-black'
                   href='/blog/'
                 >
@@ -292,7 +292,7 @@ export default async function Page({ params }: { params: { uid: string } }) {
                     </svg>
                     All blog posts
                   </span>
-                </a>
+                </Link>
               </div>
               <div className='mt-8 max-w-4xl sm:mt-10'>
                 <div className='relative overflow-hidden rounded-2xl border border-primary-300 bg-primary-100 px-6 py-10 dark:border-primary-800 dark:bg-primary-800 sm:px-8 md:py-12'>
