@@ -73,7 +73,7 @@ export default async function Page({ params }: { params: { uid: string } }) {
                     document={category}
                     className='rounded bg-primary-100 px-5 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary-700 duration-200 hover:bg-primary-300 focus:bg-primary-300 focus:outline-none focus:ring focus:ring-blue-500 focus:ring-offset-2 dark:bg-primary-700 dark:text-primary-100 dark:hover:bg-primary-800'
                   >
-                    {category?.data.name}
+                    {category?.data?.name?.toUpperCase()}
                   </PrismicNextLink>
                 ))}
               </div>
